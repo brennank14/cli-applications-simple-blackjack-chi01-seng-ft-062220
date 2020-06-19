@@ -8,8 +8,8 @@ def deal_card
   rand(1..11)
 end
 
-def display_card_total(card_total)
-  puts "Your cards add up to #{card_total}"
+def display_card_total(num)
+  puts "Your cards add up to #{num}"
 end
 
 def prompt_user
@@ -20,8 +20,8 @@ def get_user_input
   gets.chomp
 end
 
-def end_game(card_total)
-  puts "Sorry, you hit #{card_total}. Thanks for playing!"
+def end_game(num)
+  puts "Sorry, you hit #{num}. Thanks for playing!"
 end
 
 def initial_round
@@ -34,7 +34,7 @@ def hit?(card_total)
   prompt_user
   choice = get_user_input
   if choice == 'h'
-    card_total = card_total + deal_card
+    card_total += deal_card ##THIS IS THE PROBLEM. How do I get card_total in here?
   elsif choice == 's'
     card_total
   else
@@ -55,11 +55,9 @@ end
 def runner
   welcome
   card_total = initial_round
-  #binding.pry
   until card_total > 21
     hit?(card_total)
     display_card_total(card_total)
-    #binding.pry
   end
 end_game(card_total)
 end
